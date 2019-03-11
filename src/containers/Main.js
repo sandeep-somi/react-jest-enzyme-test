@@ -20,7 +20,7 @@ export default class extends Component {
 
 class Login extends Component {
   state = {
-    user: {
+    user: { 
       email: '',
       password: ''
     },
@@ -55,7 +55,7 @@ class Login extends Component {
               <Grid item xs={12} sm={12} md={12} className="login-logo">
                 <img src={Logo} alt="" />
               </Grid>
-              <Grid item xs={12} sm={12} md={12}>
+              <Grid item xs={12} sm={12} md={12}> 
                 <h1>Login</h1>
               </Grid>
               <div className="clear-fix-20" />
