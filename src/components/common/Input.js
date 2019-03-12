@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input as TextField, InputLabel, FormControl } from '@material-ui/core';
+import { Input as TextField, InputLabel, FormControl, FormHelperText } from '@material-ui/core';
 
 const Input = (props) => {
   const {
@@ -16,6 +16,7 @@ const Input = (props) => {
       <TextField
         {...restProps}
       />
+      {error ? <FormHelperText id="component-error-text">{error}</FormHelperText>: null }
     </FormControl>
   );
 }
