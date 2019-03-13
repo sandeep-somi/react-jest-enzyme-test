@@ -1,1 +1,1 @@
-export const API_URL = 'dummyApi url';
+export const API_URL = 'https://andy-apis.herokuapp.com';

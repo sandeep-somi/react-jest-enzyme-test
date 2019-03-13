@@ -1,20 +1,20 @@
 import axios from 'axios';
-import { getUser } from './';
+import { getObject } from './localstorage';
 import queryString from 'query-string';
 import { API_URL } from '../constants';
 
 //Function Name: getHeaders
-//Parameters: none;
+//Parameters: none
 //Description: This function is used to fetch the access token from the localstorage for authorization purpose.
 export function getHeaders() {
-  let user = getUser();
+  let user = getObject('sr-user');
   return {
     Authorization: `Token ${(user && user.accessToken) || null}`,
   };
 }
 
-//Function Name: apiRequest.
-//Parameters: endPoint, data, method, headers, requestOptions.
+//Function Name: apiRequest
+//Parameters: endPoint, data, method, headers, requestOptions
 //Description: This function is used to send async requests to remote server using APIs.
 export function apiRequest(endPoint, data, method, headers, requestOptions) {
   return new Promise((resolve, reject) => {

@@ -6,7 +6,9 @@ import { Input } from '../';
 
 export default class extends Component {
   render() {
-    const { user: { email, password }, errors = {}, showPassword = false, onSubmit, onChange, togglePassword, goToPage } = this.props;
+    const {
+
+    } = this.props;
     return (
       <Grid container className='login-wrapper'>
         <Grid item xs={12} sm={3} md={3}>
@@ -16,7 +18,7 @@ export default class extends Component {
                 <img src={Logo} alt="" />
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
-                <h1>Login</h1>
+                <h1>Sign Up</h1>
               </Grid>
               <div className="clear-fix-20" />
               <Grid item xs={12} sm={12} md={12}>
@@ -26,29 +28,29 @@ export default class extends Component {
                   label="Email"
                   fullWidth
                   name="email"
-                  error={errors.email}
-                  value={email}
-                  onChange={onChange}
+                  // error={errors.email}
+                  // value={email}
+                  // onChange={onChange}
                 />
               </Grid>
               <div className="clear-fix-10" />
               <Grid item xs={12} sm={12} md={12}>
                 <Input
-                  type={showPassword ? 'text' : 'password'}
+                  // type={showPassword ? 'text' : 'password'}
                   id="user-password"
                   label="Password"
                   fullWidth
                   name="password"
-                  error={errors.password}
-                  value={password}
-                  onChange={onChange}
+                  // error={errors.password}
+                  // value={password}
+                  // onChange={onChange}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="Toggle password visibility"
-                        onClick={togglePassword}
+                        // onClick={togglePassword}
                       >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                        {/* {showPassword ? <Visibility /> : <VisibilityOff />} */}
                       </IconButton>
                     </InputAdornment>
                   }
@@ -60,10 +62,10 @@ export default class extends Component {
               </Grid>
               <div className="clear-fix-10" />
               <Grid item xs={12} sm={6} md={6}>
-                <Button variant="outlined" className="btn" fullWidth type="submit" onClick={onSubmit}>Login</Button>
+                {/* <Button variant="outlined" className="btn" fullWidth type="submit" onClick={onSubmit}>Login</Button> */}
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
-                <Button variant="outlined" className="btn" fullWidth onClick={() => goToPage('/signup')}>SignUp</Button>
+                <Button variant="outlined" className="btn" fullWidth>SignUp</Button>
               </Grid>
             </Grid>
           </form>

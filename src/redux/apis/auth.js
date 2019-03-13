@@ -1,5 +1,5 @@
-import { apiPost, apiGet, apiDelete } from '../utils';
+import utils from '../../utils';
 
 export function loginAPI(user) {
-  return apiPost('/api/v1/mgmt/session', user);
+  return utils.apiPOST('/users/login', user);
 }
