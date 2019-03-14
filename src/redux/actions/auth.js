@@ -15,7 +15,10 @@ export function login(payload) {
       return resolve(response);
     })
     .catch(err => {
-      dispatch({ type: types.AUTH_REQUEST_FAILED });
+      dispatch({
+        type: types.AUTH_REQUEST_FAILED,
+        payload: err
+      });
       return reject(err);
     })
   );
@@ -36,7 +39,10 @@ export function signUp(payload) {
       return resolve(response);
     })
     .catch(err => {
-      dispatch({ type: types.SIGNUP_REQUEST_FAILED });
+      dispatch({
+        type: types.SIGNUP_REQUEST_FAILED,
+        payload: err
+      });
       return reject(err);
     })
   );

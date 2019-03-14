@@ -3,6 +3,7 @@ import Logo from '../../assets/images/sr-logo.png';
 import { Grid, Button, InputAdornment, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { Input } from '../';
+import { Link } from 'react-router-dom';
 
 export default class extends Component {
   render() {
@@ -58,7 +59,7 @@ export default class extends Component {
               </Grid>
 
               <Grid item xs={12} sm={12} md={12} className="auth-inner-right">
-                <span>Forgot Password?</span>
+                <Link to='/forgotpassword'>Forgot Password?</Link>
               </Grid>
 
               <Grid item xs={12} sm={6} md={6}>

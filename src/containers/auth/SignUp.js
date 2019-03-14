@@ -43,10 +43,7 @@ class SignUp extends Component {
     if (this.validate(user)) {
       const { confirmPassword, ...restUser } = user;
       this.props.signup(restUser).then(res => {
-        console.log(res)
         this.props.history.push('/');
-      }).catch(err => {
-        alert(err.response.data.message);
       })
     }
   }
@@ -86,7 +83,6 @@ class SignUp extends Component {
 
   render() {
     const { user, errors } = this.state;
-    console.log(this.props, 'this props');
     
     return (
       <SignUpForm

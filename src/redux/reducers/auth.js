@@ -1,5 +1,6 @@
 import types from '../types';
 import utils from '../../utils';
+import { toast } from 'react-toastify';
 
 let initialState = {
   fetching: false,
@@ -14,6 +15,7 @@ export default function (state = initialState, action) {
     
     case types.AUTH_REQUEST_SUCCESS:
       utils.saveObject('sr-user', action.payload);
+      toast.success('Logged in successfully!');
       state = {
         ...state,
         user: action.payload,
@@ -22,6 +24,7 @@ export default function (state = initialState, action) {
       return state;
     
     case types.AUTH_REQUEST_FAILED:
+      toast.error(action.payload.response.data.message);
       state = {
         ...state,
         user: {},
@@ -31,15 +34,18 @@ export default function (state = initialState, action) {
     
     case types.LOGOUT_USER:
       utils.removeObject('sr-user');
+      toast.warn('Logged out successfully!');
       return { ...state, user: {} };
     
     case types.SIGNUP_REQUEST: 
       return { state, fetching: true }
     
-    case types.SIGNUP_REQUEST_SUCCESS: 
+    case types.SIGNUP_REQUEST_SUCCESS:
+      toast.success('Registered successfully!');
       return { state, fetching: false }
     
-    case types.SIGNUP_REQUEST_FAILED: 
+    case types.SIGNUP_REQUEST_FAILED:
+      toast.error(action.payload.response.data.message);
       return { state, fetching: false }
     
     default:

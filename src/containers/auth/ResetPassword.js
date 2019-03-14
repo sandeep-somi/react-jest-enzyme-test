@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import actions from '../../redux/actions';
-import validator from '../../validations/auth/login';
-import { LoginForm } from '../../components';
+import validator from '../../validations/auth/resetpassword';
+import { ResetPasswordForm } from '../../components';
 import { connect } from 'react-redux';
 
 
-class Login extends Component {
+class ResetPassword extends Component {
   state = {
     user: { 
-      email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     },
     showPassword: false
   };
@@ -44,13 +44,6 @@ class Login extends Component {
     }
   }
 
-  //Function Name: togglePassword
-  //Parameters: none
-  //Description: This function is used to toggle show hide password.
-  togglePassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
-  }
-
   //Function Name: validate
   //Parameters: user
   //Description: This function is used to validate user's email and password before login.
@@ -71,16 +64,14 @@ class Login extends Component {
   }
 
   render() {
-    const { user, errors, showPassword } = this.state;
+    const { user, errors } = this.state;
 
     return (
-      <LoginForm
+      <ResetPasswordForm
         user={user}
         errors={errors}
-        showPassword={showPassword}
         onSubmit={this.onSubmit}
         onChange={this.onChange}
-        togglePassword={this.togglePassword}
         goToPage={this.goToPage}
       />
     );
@@ -89,7 +80,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => state;
 const mapDisptachToProps = () => ({
-  login: (user) => actions.login(user)
+  forgotPassword: (user) => actions.forgotPassword(user)
 })
 
-export default connect(mapStateToProps, mapDisptachToProps)(Login);
+export default connect(mapStateToProps, mapDisptachToProps)(ResetPassword);

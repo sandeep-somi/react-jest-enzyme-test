@@ -4,12 +4,17 @@ import {
   Login,
   SignUp,
   HomePage,
+  ForgotPassword,
+  ResetPassword
 } from './containers';
 import utils from './utils';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { connect } from 'react-redux';
 
 const PublicRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
-    return utils.isLoggedIn() ? <Redirect to={{ pathname: '/' }}/> : <Component {...props} />
+    return utils.isLoggedIn() ? <Redirect to={{ pathname: '/' }} /> : <Component {...props} />
   }} />
 );
 
@@ -19,22 +24,23 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   }} />
 );
 
-// const CommonRoute = () => {
-
-// }
-
-export default class Routes extends React.Component {
-
+class Routes extends React.Component {
   render() {
-
     return (
-      <BrowserRouter>
-        <Switch>
-          <PrivateRoute exact path='/' component={HomePage} />
-          <PublicRoute path='/login' component={Login} />
-          <PublicRoute path='/signup' component={SignUp} />
-        </Switch>
-      </BrowserRouter>
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <PrivateRoute exact path='/' component={HomePage} />
+            <PublicRoute path='/login' component={Login} />
+            <PublicRoute path='/signup' component={SignUp} />
+            <PublicRoute path='/forgotpassword' component={ForgotPassword} />
+            <PublicRoute path='/resetpassword' component={ResetPassword} />
+          </Switch>
+        </BrowserRouter>
+        <ToastContainer />
+      </div>
     );
   }
 };
+
+export default connect(state => state)(Routes)
