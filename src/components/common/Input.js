@@ -7,12 +7,13 @@ const Input = (props) => {
     className,
     fullWidth = false,
     label,
+    required = false,
     ...restProps
   } = props;
 
   return (
     <FormControl fullWidth={fullWidth} className={error ? 'form-control-error' : 'form-control'}>
-      <InputLabel htmlFor="adornment-password">{label}</InputLabel>
+      <InputLabel htmlFor="adornment-password">{label}{required ? <sup>*</sup> : null }</InputLabel>
       <TextField
         {...restProps}
       />

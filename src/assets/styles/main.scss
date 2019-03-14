@@ -3,11 +3,19 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.login-wrapper {
+.auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   padding: 12px;
+  div.auth {
+    padding: 24px;
+    box-shadow: 0px 0px 22px 11px #eee;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+  }
   div {
     div {
       div {
@@ -18,21 +26,23 @@ body {
           font-size: 20px;
         }
       }
-      div.login-logo {
+      div.auth-logo {
         text-align: center;
-        padding: 24px;
+        // padding: 24px;
         img {
           width: 200px;
         }
       }
-      div.forgot-password-section {
+      div.auth-inner-right {
         text-align: right;
-        span {
+        line-height: 32px;
+        span, a {
           font-size: 12px;
           color: #656565;
           cursor: pointer;
+          text-decoration: none;
         }
-        span:hover, span:active {
+        span:hover, span:active, a:hover, a:active {
           color: #2f2f2f;
         }
       }

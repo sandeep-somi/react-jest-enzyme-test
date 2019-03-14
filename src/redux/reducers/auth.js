@@ -13,14 +13,10 @@ export default function (state = initialState, action) {
       return { ...state, fetching: true };
     
     case types.AUTH_REQUEST_SUCCESS:
-      const user = {
-        ...action.payload.user,
-        token: action.payload.token
-      };
-      utils.saveObject('sr-user', user);
+      utils.saveObject('sr-user', action.payload);
       state = {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
         fetching: false
       };
       return state;
@@ -36,6 +32,15 @@ export default function (state = initialState, action) {
     case types.LOGOUT_USER:
       utils.removeObject('sr-user');
       return { ...state, user: {} };
+    
+    case types.SIGNUP_REQUEST: 
+      return { state, fetching: true }
+    
+    case types.SIGNUP_REQUEST_SUCCESS: 
+      return { state, fetching: false }
+    
+    case types.SIGNUP_REQUEST_FAILED: 
+      return { state, fetching: false }
     
     default:
       return state;

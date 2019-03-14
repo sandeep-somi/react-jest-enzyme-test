@@ -1,5 +1,5 @@
 import types from '../types';
-import { loginAPI } from '../apis/auth';
+import { loginAPI, SignUpAPI } from '../apis/auth';
 import store from '../../store';
 
 const { dispatch } = store;
@@ -23,4 +23,21 @@ export function login(payload) {
 
 export function logout() {
   dispatch({ type: types.LOGOUT_USER });
+}
+
+export function signUp(payload) {
+  dispatch({ type: types.SIGNUP_REQUEST });
+  return new Promise((resolve, reject) => SignUpAPI(payload)
+    .then(response => {
+      dispatch({
+        type: types.SIGNUP_REQUEST_SUCCESS,
+        payload: response
+      });
+      return resolve(response);
+    })
+    .catch(err => {
+      dispatch({ type: types.SIGNUP_REQUEST_FAILED });
+      return reject(err);
+    })
+  );
 }

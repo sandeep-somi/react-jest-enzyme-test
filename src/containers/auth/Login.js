@@ -46,7 +46,6 @@ class Login extends Component {
         alert(err.response.data.message);
       })
     }
-
   }
 
   //Function Name: togglePassword
@@ -68,13 +67,15 @@ class Login extends Component {
     return isValid
   }
 
+  //Function Name: toToPage
+  //Parameters: path
+  //Description: This function is used switch routes
   goToPage = (path) => {
     this.props.history.push(path);
   }
 
   render() {
     const { user, errors, showPassword } = this.state;
-    console.log(this.props, 'this.props');
 
     return (
       <LoginForm
