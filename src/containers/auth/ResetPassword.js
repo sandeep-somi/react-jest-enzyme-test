@@ -11,7 +11,6 @@ class ResetPassword extends Component {
       password: '',
       confirmPassword: ''
     },
-    showPassword: false
   };
 
   //Function Name: onChange
@@ -37,8 +36,13 @@ class ResetPassword extends Component {
   //Description: This function is used to submit the login form.
   onSubmit = (event) => {
     event.preventDefault();
-    if (this.validate(this.state.user)) {
-      this.props.login(this.state.user).then(() => {
+    const { user } = this.state;
+    const updatedUser = {
+      password: user.password,
+      token: this.props.match.params.token
+    }
+    if (this.validate(user)) {
+      this.props.resetPassword(updatedUser).then(() => {
         this.props.history.push('/');
       })
     }
@@ -80,7 +84,7 @@ class ResetPassword extends Component {
 
 const mapStateToProps = (state) => state;
 const mapDisptachToProps = () => ({
-  forgotPassword: (user) => actions.forgotPassword(user)
+  resetPassword: (user) => actions.resetPassword(user)
 })
 
 export default connect(mapStateToProps, mapDisptachToProps)(ResetPassword);

@@ -1,5 +1,11 @@
 import types from '../types';
-import { loginAPI, SignUpAPI } from '../apis/auth';
+import {
+  loginAPI,
+  signUpAPI,
+  updateUserAPI,
+  resetPasswordAPI,
+  forgotPasswordAPI
+} from '../apis/auth';
 import store from '../../store';
 
 const { dispatch } = store;
@@ -30,7 +36,7 @@ export function logout() {
 
 export function signUp(payload) {
   dispatch({ type: types.SIGNUP_REQUEST });
-  return new Promise((resolve, reject) => SignUpAPI(payload)
+  return new Promise((resolve, reject) => signUpAPI(payload)
     .then(response => {
       dispatch({
         type: types.SIGNUP_REQUEST_SUCCESS,
@@ -47,3 +53,44 @@ export function signUp(payload) {
     })
   );
 }
+
+export function forgotPassword(payload) {
+  dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
+  return new Promise((resolve, reject) => forgotPasswordAPI(payload)
+    .then(response => {
+      dispatch({
+        type: types.FORGOT_PASSWORD_SUCCESS,
+        payload: response
+      });
+      return resolve(response);
+    })
+    .catch(err => {
+      dispatch({
+        type: types.FORGOT_PASSWORD_FAILED,
+        payload: err
+      });
+      return reject(err);
+    })
+  );
+}
+
+export function resetPassword(payload) {
+  dispatch({ type: types.RESET_PASSWORD_REQUEST });
+  return new Promise((resolve, reject) => resetPasswordAPI(payload)
+    .then(response => {
+      dispatch({
+        type: types.RESET_PASSWORD_SUCCESS,
+        payload: response
+      });
+      return resolve(response);
+    })
+    .catch(err => {
+      dispatch({
+        type: types.RESET_PASSWORD_FAILED,
+        payload: err
+      });
+      return reject(err);
+    })
+  );
+}
+

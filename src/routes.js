@@ -34,7 +34,7 @@ class Routes extends React.Component {
             <PublicRoute path='/login' component={Login} />
             <PublicRoute path='/signup' component={SignUp} />
             <PublicRoute path='/forgotpassword' component={ForgotPassword} />
-            <PublicRoute path='/resetpassword' component={ResetPassword} />
+            <PublicRoute path='/resetpassword/:token' component={ResetPassword} />
           </Switch>
         </BrowserRouter>
         <ToastContainer />

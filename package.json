@@ -128,5 +128,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "better-npm-run": "^0.1.1"
   }
 }

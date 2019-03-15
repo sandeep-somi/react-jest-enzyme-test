@@ -1,9 +1,9 @@
 import * as localStorage from './localstorage';
-import * as axiosCall from './axiosCall';
+import * as axiosHelpers from './axiosHelpers';
 import * as helpers from './helpers';
 
 export default {
   ...localStorage,
-  ...axiosCall,
+  ...axiosHelpers,
   ...helpers
 }

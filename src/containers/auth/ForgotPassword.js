@@ -36,9 +36,8 @@ class ForgotPassword extends Component {
   //Description: This function is used to submit the login form.
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push('/resetpassword');
     if (this.validate(this.state.user)) {
-      this.props.login(this.state.user).then(() => {
+      this.props.forgotPassword(this.state.user).then(() => {
         this.props.history.push('/');
       })
     }

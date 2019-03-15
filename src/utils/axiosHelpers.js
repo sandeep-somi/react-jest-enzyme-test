@@ -78,6 +78,13 @@ export function apiPUT(endPoint, data, headers = {}) {
   return apiRequest(generateURL(endPoint), data, "put", headers);
 }
 
+//Function Name: apiPATCH
+//Parameters: endPoint, data, headers, requestOptions
+//Description: This function is used perform put api request
+export function apiPATCH(endPoint, data, headers = {}) {
+  return apiRequest(generateURL(endPoint), data, "patch", headers);
+}
+
 //Function Name: apiDELETE
 //Parameters: endPoint, data, headers, requestOptions
 //Description: This function is used perform get delete request

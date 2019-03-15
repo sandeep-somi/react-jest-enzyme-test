@@ -9,7 +9,7 @@ let initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-
+    // login
     case types.GET_AUTH_REQUEST:
       return { ...state, fetching: true };
     
@@ -31,12 +31,12 @@ export default function (state = initialState, action) {
         fetching: false
       }
       return state;
-    
+    //logout
     case types.LOGOUT_USER:
       utils.removeObject('sr-user');
       toast.warn('Logged out successfully!');
       return { ...state, user: {} };
-    
+    //signup
     case types.SIGNUP_REQUEST: 
       return { state, fetching: true }
     
@@ -47,7 +47,28 @@ export default function (state = initialState, action) {
     case types.SIGNUP_REQUEST_FAILED:
       toast.error(action.payload.response.data.message);
       return { state, fetching: false }
+    //forgot password
+    case types.FORGOT_PASSWORD_REQUEST: 
+      return { state, fetching: true }
     
+    case types.FORGOT_PASSWORD_SUCCESS:
+      toast.success('Email sent successfully!');
+      return { state, fetching: false }
+    
+    case types.FORGOT_PASSWORD_FAILED:
+      toast.error(action.payload.response.data.message);
+      return { state, fetching: false }
+    //reset password
+    case types.RESET_PASSWORD_REQUEST:
+      return { state, fetching: true }
+
+    case types.RESET_PASSWORD_SUCCESS:
+      toast.success('Password reset successful!');
+      return { state, fetching: false }
+
+    case types.RESET_PASSWORD_FAILED:
+      toast.error(action.payload.response.data.message);
+      return { state, fetching: false }
     default:
       return state;
   }
