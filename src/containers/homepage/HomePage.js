@@ -14,6 +14,10 @@ class HomePage extends Component {
     },
   }
 
+  componentDidMount() {
+    this.getProducts();
+  }
+
   logOut = () => {
     this.props.logout();
     this.props.history.push('/login');
@@ -23,12 +27,18 @@ class HomePage extends Component {
     this.modal.open();
   }
 
+  getProducts = () => {
+    this.props.getProducts();
+  }
+
   closeModal = (e) => {
     e.preventDefault();
     this.customSelect.close()
   }
 
   render() {
+    const { products = [] } = this.props.products;
+    console.log(this.props, 'this.props');
     return (
       <Grid container onClick={this.closeModal}>
         <Grid item xs={12} sm={11} md={11}></Grid>
@@ -41,10 +51,17 @@ class HomePage extends Component {
           </Button>
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
-          <CustomSelectCounter
-            ref={(c) => this.customSelect = c}
-            persons={this.state.persons}
-          />
+          <Grid container>
+            {products && products.length && products
+              .map(item => {
+                const link = `https://localhost:8080/${item.asset}`
+                return <Grid item xs={12} sm={2} md={2}>
+                  <p>{item.name}</p>
+                  <p>{item.price}</p>
+                  {item && item.asset ? < img src={link} height="50" width="50" /> : null }
+                </Grid>
+            })}
+          </Grid>
         </Grid>
         <Modal
           ref={(c) => this.modal = c}
@@ -56,99 +73,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = () => ({
-  logout: () => actions.logout()
+  logout: () => actions.logout(),
+  getProducts: () => actions.getProducts()
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-
-const style = {
-  container: {
-    position: 'absolute',
-    border: '1px solid black',
-    height: 32,
-    width: '100%'
-  },
-  popup: {
-    position: 'absolute',
-    top: 40,
-    width: 250,
-    height: 200,
-    boxShadow: '0px 0px 21px 1px #c7c7c7'
-  },
-  popupInner: {
-    position: 'relative',
-    width: '100%',
-    height: '100%'
-  },
-  popupNotch: {
-    position: 'absolute',
-    height: 15,
-    backgroundColor: '#fff',
-    width: 15,
-    top: -6,
-    transform: 'rotate(45deg)',
-    left: 10
-  },
-  btn: {
-    backgroundColor: 'aqua',
-    width: 40
-  }
-}
-
-class CustomSelectCounter extends React.Component {
-
-  state = {
-    open: false
-  }
-
-  toggle = () => {
-    this.setState({ open: !this.state.open })
-  }
-
-  close = () => {
-    if (this.state.open) {
-      this.setState({ open: false })
-    }
-  }
-
-  render() {
-    const { persons = {} } = this.props
-    return (
-      <div style={style.container} onClick={this.toggle}>
-        {this.state.open ? <div style={style.popup} onClick={(e) => e.stopPropagation()}>
-          <div style={style.popupInner}>
-            <span style={style.popupNotch}></span>
-            <Grid container>
-              <Grid item xs={12} sm={12} md={12} style={{ padding: 20 }}>
-                <Grid container>
-                  <Grid item xs={6} sm={6} md={6}>
-                    Adults
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <Button style={style.btn}>-</Button> 0 <Button style={style.btn}>+</Button>
-                  </Grid>
-                </Grid>
-                <Grid container style={{ paddingTop: 20 }}>
-                  <Grid item xs={6} sm={6} md={6}>
-                    Childs
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <Button style={style.btn}>-</Button> 0 <Button style={style.btn}>+</Button>
-                  </Grid>
-                </Grid>
-                <Grid container style={{ paddingTop: 20 }}>
-                  <Grid item xs={6} sm={6} md={6}>
-                    Infaints
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <Button style={style.btn}>-</Button> 0 <Button style={style.btn}>+</Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </div>
-        </div> : null}
-      </div>
-    )
-  }
-}
