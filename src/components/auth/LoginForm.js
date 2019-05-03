@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from '../../assets/images/sr-logo.png';
+import Logo from '../../assets/images/ebazaar.png';
 import { Grid, Button, InputAdornment, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { Input } from '../';

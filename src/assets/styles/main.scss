@@ -120,3 +120,65 @@ button {
   border: 1px solid rgb(148, 148, 148);
   font-size: 14px !important;
 }
+
+.cards-wrapper {
+  padding: 16px;
+  .card{
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    position: relative;
+    cursor: pointer;
+    &.active {
+      box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+    }
+    .fixed-top {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      z-index: 1;
+      button {
+        background-color: orange;
+      }
+    }
+    .card-image-wrapper {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
+      .fixed-buttons {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        button {
+          background-color: orange;
+          color: #fff;
+          margin-right: 5px;
+          width: 47%;
+        }
+        button:last-child {
+          margin-right: 0px;
+        }
+      }
+    }
+    .card-desc {
+      p {
+        margin: 4px 0px;
+        font-size: 14px;
+        color: #5a5a5a;
+        font-weight: 600;
+      }
+      .item-name {
+        
+      }
+      .item-price {
+        color: #1c78cc;
+      }
+    }
+  }
+}
