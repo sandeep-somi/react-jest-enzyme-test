@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultImg from '../../assets/images/image-placeholder.png';
 import { Grid, Button, Fab } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { Favorite } from '@material-ui/icons';
 
 class Card extends React.Component {
 
@@ -29,7 +29,7 @@ class Card extends React.Component {
         <div className={`card ${active ? 'active' : ''}`}>
             {active ? <div className="fixed-top">
               <Fab color="primary" aria-label="Add" size="small">
-                <Add />
+              <Favorite />
               </Fab>
             </div> : null }
           <div className="card-image-wrapper">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Button } from '@material-ui/core';
 import actions from '../../redux/actions';
-import { PowerSettingsNew, Person } from '@material-ui/icons';
+import { PowerSettingsNew, Person, Favorite } from '@material-ui/icons';
 import { Modal, Card } from '../../components';
 
 
@@ -51,9 +51,7 @@ class HomePage extends Component {
             {products && products.length ? products.map(item => <Card item={item} key={item.id}/>) : null}
           </Grid>
         </Grid>
-        <Modal
-          ref={(c) => this.modal = c}
-        />
+        <Modal ref={(c) => this.modal = c}/>
       </Grid>
     );
   }

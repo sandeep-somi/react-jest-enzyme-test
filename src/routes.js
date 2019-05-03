@@ -5,7 +5,8 @@ import {
   SignUp,
   HomePage,
   ForgotPassword,
-  ResetPassword
+  ResetPassword,
+  AppContainer
 } from './containers';
 import utils from './utils';
 import { ToastContainer } from 'react-toastify';
@@ -20,7 +21,11 @@ const PublicRoute = ({ component: Component, ...rest }) => (
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
-    return utils.isLoggedIn() ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />
+    return utils.isLoggedIn() ? <React.Fragment>
+      <AppContainer {...props}>
+        <Component {...props} />
+      </AppContainer>
+    </React.Fragment> : <Redirect to={{ pathname: '/login' }} />
   }} />
 );
 

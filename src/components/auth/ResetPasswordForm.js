@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from '../../assets/images/sr-logo.png';
+import Logo from '../../assets/images/ebazaar.png';
 import { Grid, Button } from '@material-ui/core';
 import { Input } from '../';
 import { Link } from 'react-router-dom';

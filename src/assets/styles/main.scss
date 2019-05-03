@@ -159,7 +159,8 @@ button {
           background-color: orange;
           color: #fff;
           margin-right: 5px;
-          width: 47%;
+          font-size: 12px;
+          padding: 4px 8px;
         }
         button:last-child {
           margin-right: 0px;
@@ -181,4 +182,8 @@ button {
       }
     }
   }
+}
+
+.grow-1 {
+  flex-grow: 1;
 }
