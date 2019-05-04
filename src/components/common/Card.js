@@ -18,14 +18,17 @@ class Card extends React.Component {
     this.setState({ active: false })
   }
 
+  setRef = () => {
+    this.image.src = defaultImg;
+  }
+
   render() {
     const { active = false } = this.state;
     const { item = {} } = this.props;
-    const { id = '', link = '', name = '', price = 0, desc = '', rating = 0, reviews = [] } = item;
-    const src = defaultImg //item.asset ? `https://localhost:8080/${item.asset}` : defaultImg;
-
+    const { id = '', name = '', price = 0, desc = '', rating = 0, reviews = [], asset = {} } = item;
+    const src = item.asset && item.asset.url ? item.asset.url : defaultImg;
     return (
-      <Grid item xs={6} sm={3} md={2} onMouseOver={() => this.handleMouseOver(id)} onMouseLeave={() => this.handleMouseOut()}>
+      <Grid item xs={6} sm={4} md={3} onMouseOver={() => this.handleMouseOver(id)} onMouseLeave={() => this.handleMouseOut()}>
         <div className={`card ${active ? 'active' : ''}`}>
             {active ? <div className="fixed-top">
               <Fab color="primary" aria-label="Add" size="small">
@@ -33,7 +36,7 @@ class Card extends React.Component {
               </Fab>
             </div> : null }
           <div className="card-image-wrapper">
-            <img src={src} alt="" />
+            <img src={src} alt="" onError={() => this.setRef()} ref={e => this.image = e} />
             {active ? <div className="fixed-buttons">
               <Button>Add to Cart</Button>
               <Button>Buy Now</Button>

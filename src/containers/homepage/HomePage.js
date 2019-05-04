@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import actions from '../../redux/actions';
-import { PowerSettingsNew, Person, Favorite } from '@material-ui/icons';
-import { Modal, Card } from '../../components';
+import { Card, CardLoader } from '../../components';
 
 
 class HomePage extends Component {
@@ -24,34 +23,34 @@ class HomePage extends Component {
     this.props.history.push('/login');
   }
 
-  openUserInfo = () => {
-    this.modal.open();
-  }
-
   getProducts = () => {
     this.props.getProducts();
   }
 
   render() {
-    const { products = [] } = this.props.products;
+    const { products = [], fetchingProducts = false } = this.props.products;
+
+    if(fetchingProducts) {
+      return (
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} style={{ padding: 16 }}>
+            <Grid container spacing={16}>
+              {[...Array(18)].map(i => <Grid key={i} item xs={6} sm={4} md={3}>
+                <CardLoader />
+              </Grid>)}
+            </Grid>
+          </Grid>  
+        </Grid>
+      )
+    }
     
     return (
       <Grid container>
-        <Grid item xs={12} sm={11} md={11}></Grid>
-        <Grid item xs={12} sm={1} md={1} style={{ textAlign: 'right' }}>
-          <Button onClick={this.openUserInfo}>
-            <Person />
-          </Button>
-          <Button onClick={this.logOut}>
-            <PowerSettingsNew />
-          </Button>
-        </Grid>
         <Grid item xs={12} sm={12} md={12} className="cards-wrapper">
           <Grid container spacing={16}>
             {products && products.length ? products.map(item => <Card item={item} key={item.id}/>) : null}
           </Grid>
         </Grid>
-        <Modal ref={(c) => this.modal = c}/>
       </Grid>
     );
   }
