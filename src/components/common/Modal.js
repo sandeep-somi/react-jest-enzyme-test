@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Grid,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle
 } from '@material-ui/core';
 
@@ -26,12 +23,12 @@ class Modal extends Component {
     const {
       title = '',
       footer = null
-    } = this.props
+    } = this.props;
+    
     return (
       <Dialog
         open={this.state.open}
         onClose={this.close}
-        // scroll={this.state.scroll}
         aria-labelledby="scroll-dialog-title"
         scroll="body"
       >
