@@ -1,6 +1,7 @@
 import types from '../types';
 import {
-  getProductsAPI
+  getProductsAPI,
+  createProductAPI
 } from '../apis/products';
 import store from '../../store';
 
@@ -19,6 +20,26 @@ export function getProducts() {
     .catch(err => {
       dispatch({
         type: types.GET_PRODUCTS_FAILED,
+        payload: err
+      });
+      return reject(err);
+    })
+  );
+}
+
+export function addProduct(product, file) {
+  dispatch({ type: types.ADD_PRODUCT_REQUEST });
+  return new Promise((resolve, reject) => createProductAPI(product, file)
+    .then(response => {
+      dispatch({
+        type: types.ADD_PRODUCT_SUCCESS,
+        payload: response.product
+      });
+      return resolve(response);
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ADD_PRODUCT_FAILED,
         payload: err
       });
       return reject(err);

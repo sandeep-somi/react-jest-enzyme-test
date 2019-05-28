@@ -5,6 +5,7 @@ body {
 
 button {
   min-width: 20px !important;
+  border-radius: 0px !important;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -127,7 +128,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .cards-wrapper {
-  padding: 8px;
+  padding: 16px;
   .card{
     border-radius: 4px;
     // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);

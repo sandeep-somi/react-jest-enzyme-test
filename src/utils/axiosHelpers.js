@@ -8,8 +8,9 @@ import { API_URL } from '../constants';
 //Description: This function is used to fetch the access token from the localstorage for authorization purpose.
 export function getHeaders() {
   let user = getObject('sr-user');
+  console.log(user, 'get headers user')
   return {
-    Authorization: `Token ${(user && user.accessToken) || null}`,
+    Authorization: `Token ${(user && user.token) || null}`,
   };
 }
 
@@ -22,6 +23,7 @@ export function apiRequest(endPoint, data, method, headers, requestOptions) {
       ...getHeaders(),
       ...headers
     };
+    console.log(headers, 'headers');
 
     if (method === 'get' || method === 'delete') {
       data = {

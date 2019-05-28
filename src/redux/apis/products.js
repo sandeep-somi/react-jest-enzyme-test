@@ -1,10 +1,14 @@
 import utils from '../../utils';
 
-export function createProductAPI(payload) {
+export function createProductAPI(payload, file) {
   const data = new FormData();
-  data.append(payload.name)
-  data.append(payload.price)
-  data.append(payload.asset)
+  data.append("name", payload.name);
+  data.append("price", payload.price);
+  data.append("offerPrice", payload.offerPrice);
+  data.append("description", payload.description);
+  data.append("reviews", payload.reviews);
+  data.append("rating", payload.rating);
+  data.append("asset", file);
   return utils.apiPOST('/products', data);
 }
 

@@ -51,6 +51,7 @@
     "react-content-loader": "^4.2.1",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.4",
+    "react-image-crop": "^7.0.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",

@@ -78,7 +78,9 @@ export default class extends React.Component {
           ref={e => this.addProductModal = e}
           title="Add Product"
         >
-          <AddProduct />
+          <AddProduct
+            close={() => this.addProductModal.close()}
+          />
         </Modal>
       </div>
     );

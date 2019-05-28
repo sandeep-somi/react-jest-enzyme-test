@@ -28,9 +28,27 @@ export default function (state = initialState, action) {
       toast.error(action.payload.response.data.message);
       state = {
         ...state,
-        products: [],
-        productsMap: {},
         fetchingProducts: false
+      }
+      return state;
+    
+    case types.ADD_PRODUCT_REQUEST:
+      return { ...state, fetchingProduct: true };
+
+    case types.ADD_PRODUCT_SUCCESS:
+      state = {
+        ...state,
+        products: [...state.products, action.payload],
+        productsMap: { ...state.productsMap, [action.payload.id]: action.payload },
+        fetchingProduct: false
+      };
+      return state;
+
+    case types.ADD_PRODUCT_FAILED:
+      toast.error(action.payload.response.data.message);
+      state = {
+        ...state,
+        fetchingProduct: false
       }
       return state;
    

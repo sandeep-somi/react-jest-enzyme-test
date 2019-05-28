@@ -6,6 +6,7 @@ import './init';
 import { Provider } from 'react-redux';
 import store from './store';
 import Routes from './routes';
+import 'react-image-crop/lib/ReactCrop.scss';
 
 ReactDOM.render(
   <Provider store={store}>
