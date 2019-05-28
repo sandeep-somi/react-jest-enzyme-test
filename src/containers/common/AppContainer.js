@@ -1,9 +1,11 @@
 import React from 'react';
 import { IconButton, Typography, Toolbar, AppBar, Badge, CssBaseline, Grid } from '@material-ui/core';
-import { LocalGroceryStore, AccountCircle, MoreVert, Add } from '@material-ui/icons';
+import { LocalGroceryStore, AccountCircle, MoreVert, Add, PowerSettingsNew } from '@material-ui/icons';
 import { Sidebar } from '../';
 import { Modal } from '../../components';
 import AddProduct from '../products/AddProduct';
+import utils from '../../utils';
+
 
 export default class extends React.Component {
   state = {
@@ -34,6 +36,11 @@ export default class extends React.Component {
     this.addProductModal.open();
   }
 
+  logout = () => {
+    utils.removeObject("sr-user");
+    this.props.history.push("/login")
+  }
+
   render() {
 
     return (
@@ -62,6 +69,10 @@ export default class extends React.Component {
 
             <IconButton color="inherit" >
               <MoreVert />
+            </IconButton>
+
+            <IconButton color="inherit" onClick={this.logout}>
+              <PowerSettingsNew />
             </IconButton>
           </Toolbar>
         </AppBar>
